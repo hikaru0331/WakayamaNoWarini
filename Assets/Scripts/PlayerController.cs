@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     public float maxJumpForce = 10f; // ジャンプ力
     public float jumpAngle = 45f; // ジャンプの角度（度単位）
 
+    private PhysicsMaterial2D playerMaterial;
+
     // プレイヤーが地面にいるかどうかの判定
     private bool isGrounded = true;
 
@@ -23,6 +25,9 @@ public class PlayerController : MonoBehaviour
     {
         // プレイヤーのRigidbody2Dコンポーネントを取得
         rb = GetComponent<Rigidbody2D>();
+
+        playerMaterial = new PhysicsMaterial2D();
+        OverwritePhysicsMaterial(50.0f, 0.3f);
     }
 
     /// <summary>
@@ -36,7 +41,7 @@ public class PlayerController : MonoBehaviour
         // Spaceキーが押され、プレイヤーが地面にいるときにジャンプ
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            Jump();
+            Jump(maxJumpForce, jumpAngle);
         }
     }
 
@@ -51,18 +56,20 @@ public class PlayerController : MonoBehaviour
         if (horizontalInput > 0 && !facingRight)
         {
             Flip(); // プレイヤーの向きを右に変更
+            Debug.Log("右向き");
         }
         // 左向きに移動する場合
         else if (horizontalInput < 0 && facingRight)
         {
             Flip(); // プレイヤーの向きを左に変更
+            Debug.Log("左向き");
         }
     }
 
     /// <summary>
     /// プレイヤーを現在の向きに応じて放物線状にジャンプさせます。
     /// </summary>
-    void Jump()
+    void Jump(float maxJumpForce, float jumpAngle)
     {
         // ジャンプの角度をラジアンに変換
         float angleInRadians = jumpAngle * Mathf.Deg2Rad;
@@ -91,16 +98,16 @@ public class PlayerController : MonoBehaviour
         transform.localScale = scaler;
     }
 
-    /// <summary>
-    /// 地面に着地したかどうかを判定し、地面に戻った場合はisGroundedをtrueにします。
-    /// </summary>
-    /// <param name="collision">衝突したオブジェクト</param>
-    void OnCollisionEnter2D(Collision2D collision)
+    private void OverwritePhysicsMaterial(float friction, float bounciness)
     {
-        // 地面に着地した場合にのみisGroundedをtrueにする
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;
-        }
+        playerMaterial.friction = friction;
+        playerMaterial.bounciness = bounciness;
+        rb.sharedMaterial = playerMaterial;
+    }
+
+    //GroundJudgerが地面に触れている場合のみ、isGroundedをtrueにする
+    void OnTriggerEnter2D(Collider2D other) 
+    { 
+        isGrounded = true;
     }
 }
