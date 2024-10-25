@@ -13,7 +13,8 @@ public class PlayerOperator : MonoBehaviour
 
     private Dictionary<string, float[]> testDict = new Dictionary<string, float[]>();
 
-    private float[] arguments = { 12.0f, 45.0f };
+    private float[] jumpArguments = { 12.0f, 45.0f };
+    private float[] physicsArguments;
 
     /// <summary>
     /// プレイヤー挙動の初期化
@@ -21,13 +22,15 @@ public class PlayerOperator : MonoBehaviour
     private void Start() 
     {
         playerBehavior.Initialize();
+        physicsArguments = new float[] { 50.0f, 0.3f };
 
         // ディクショナリの初期化
-        testDict.Add("TurnRight1", arguments);
-        testDict.Add("TurnLeft1", arguments);
-        testDict.Add("Jump1", arguments);
-        testDict.Add("Jump2", arguments);
-        testDict.Add("TypoCommand1", arguments);
+        testDict.Add("OverwritePhysicsMaterial1", physicsArguments);
+        testDict.Add("TurnLeft1", null);
+        // testDict.Add("TurnRight1", null);
+        testDict.Add("Jump1", jumpArguments);
+        testDict.Add("Jump2", jumpArguments);
+        testDict.Add("TypoCommand1", null);
 
         ReadDictionary();
     }
@@ -50,6 +53,10 @@ public class PlayerOperator : MonoBehaviour
             {
                 playerBehavior.facingRight = false;
                 playerBehavior.Flip();
+            }
+            else if (Regex.IsMatch(item.Key, @"^OverwritePhysicsMaterial\d$"))
+            {
+                playerBehavior.OverwritePhysicsMaterial(item.Value[0], item.Value[1]);
             }
             else
             {
