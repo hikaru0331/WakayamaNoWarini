@@ -6,7 +6,7 @@ using System;
 public class DSLInterpreter : MonoBehaviour
 {
     private CharacterController characterController;
-    private string command = "jump(5, 45);\nTurnLeft(90);\nTurnRight(45);\nOverwritePhysicsMaterial(0.5, 3);\n";
+    private string command = "Jump(12, 45);\nTurnLeft(90);\nTurnRight(45);\nOverwritePhysicsMaterial(50.0, 0.3);\n";
 
     void Start()
     {
@@ -23,9 +23,6 @@ public class DSLInterpreter : MonoBehaviour
         // 分割した配列をそのままParseCommandに渡す
         Dictionary<string, float?[]> commandDic = ParseCommand(lines);
 
-        // コマンドの内容を表示(テスト用)
-        DisplayCommandDetails(commandDic);
-        
         return commandDic;
     }
 
@@ -42,21 +39,21 @@ public class DSLInterpreter : MonoBehaviour
             string trimmedCommand = command.Trim(); 
 
             // jumpコマンド
-            if (Regex.IsMatch(trimmedCommand, @"jump\((\d+(\.\d+)?),\s*(\d+(\.\d+)?)\)"))
+            if (Regex.IsMatch(trimmedCommand, @"Jump\((\d+(\.\d+)?),\s*(\d+(\.\d+)?)\)"))
             {
-                var match = Regex.Match(trimmedCommand, @"jump\((\d+(\.\d+)?),\s*(\d+(\.\d+)?)\)");
+                var match = Regex.Match(trimmedCommand, @"Jump\((\d+(\.\d+)?),\s*(\d+(\.\d+)?)\)");
                 try
                 {
                     float jumpForce = float.Parse(match.Groups[1].Value.Trim(), System.Globalization.CultureInfo.InvariantCulture);
                     float jumpAngle = float.Parse(match.Groups[3].Value.Trim(), System.Globalization.CultureInfo.InvariantCulture); // 修正
 
                     float?[] arguments = { jumpForce, jumpAngle };
-                    commandDic.Add("jump" + jumpIndex, arguments);
+                    commandDic.Add("Jump" + jumpIndex, arguments);
                     jumpIndex++;
                 }
                 catch (FormatException e)
                 {
-                    Debug.LogError($"Failed to parse jump parameters: {e.Message}");
+                    Debug.LogError($"Failed to parse Jump parameters: {e.Message}");
                 }
             }
             // TurnLeftコマンド
@@ -118,37 +115,4 @@ public class DSLInterpreter : MonoBehaviour
         return commandDic;
     }
 
-    // コマンドの内容を表示するメソッド、本来はOperatorで実装するべき
-    private void DisplayCommandDetails(Dictionary<string, float?[]> commandDic)
-    {
-        foreach (var entry in commandDic)
-        {
-            string commandName = entry.Key;
-            float?[] arguments = entry.Value;
-
-            // 正規表現を用いて場合分け
-            if (Regex.IsMatch(commandName, @"^jump\d+$")) // jumpの後に数字が続く場合
-            {
-                float? jumpForce = arguments[0];
-                float? jumpAngle = arguments[1];
-                Debug.Log($"Jump 力：{jumpForce} 角度：{jumpAngle}");
-            }
-            else if (Regex.IsMatch(commandName, @"^TurnLeft\d+$")) // TurnLeftの後に数字が続く場合
-            {
-                float? angle = arguments[0];
-                Debug.Log($"TurnLeft 角度：{angle}");
-            }
-            else if (Regex.IsMatch(commandName, @"^TurnRight\d+$")) // TurnRightの後に数字が続く場合
-            {
-                float? angle = arguments[0];
-                Debug.Log($"TurnRight 角度：{angle}");
-            }
-            else if (Regex.IsMatch(commandName, @"^OverwritePhysicsMaterial\d+$")) // OverwritePhysicsMaterialの後に数字が続く場合
-            {
-                float? friction = arguments[0];
-                float? bounciness = arguments[1];
-                Debug.Log($"OverwritePhysicsMaterial 摩擦：{friction} 弾力性：{bounciness}");
-            }
-        }
-    }
 }
