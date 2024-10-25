@@ -10,11 +10,10 @@ public class PlayerOperator : MonoBehaviour
     /// </summary>
     [SerializeField]
     private PlayerBehavior playerBehavior;
+    [SerializeField]
+    private DSLInterpreter dSLInterpreter;
 
-    private Dictionary<string, float[]> testDict = new Dictionary<string, float[]>();
-
-    private float[] jumpArguments = { 12.0f, 45.0f };
-    private float[] physicsArguments;
+    private Dictionary<string, float?[]> commandDic;
 
     /// <summary>
     /// プレイヤー挙動の初期化
@@ -22,26 +21,25 @@ public class PlayerOperator : MonoBehaviour
     private void Start() 
     {
         playerBehavior.Initialize();
-        physicsArguments = new float[] { 50.0f, 0.3f };
 
-        // ディクショナリの初期化
-        testDict.Add("OverwritePhysicsMaterial1", physicsArguments);
-        testDict.Add("TurnLeft1", null);
-        // testDict.Add("TurnRight1", null);
-        testDict.Add("Jump1", jumpArguments);
-        testDict.Add("Jump2", jumpArguments);
-        testDict.Add("TypoCommand1", null);
+        commandDic = dSLInterpreter.ReturnDictionary();
+    }
 
-        ReadDictionary();
+    private void Update() 
+    {
+        if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.S))
+        {
+            ReadDictionary();
+        }
     }
 
     private void ReadDictionary()
     {
-        foreach (var item in testDict)
+        foreach (var item in commandDic)
         {
             if (Regex.IsMatch(item.Key, @"^Jump\d$"))
             {
-                Debug.Log("Jump Key: " + item.Key + " : " + item.Value);
+                Debug.Log("Jump Key: " + item.Key + " : " + item.Value[0] + " : " + item.Value[1]);
                 playerBehavior.Jump(item.Value[0], item.Value[1]);
             }
             else if (Regex.IsMatch(item.Key, @"^TurnLeft\d$"))
@@ -56,6 +54,7 @@ public class PlayerOperator : MonoBehaviour
             }
             else if (Regex.IsMatch(item.Key, @"^OverwritePhysicsMaterial\d$"))
             {
+                Debug.Log("OverwritePhysicsMaterial Key: " + item.Key + " : " + item.Value[0] + " : " + item.Value[1]);
                 playerBehavior.OverwritePhysicsMaterial(item.Value[0], item.Value[1]);
             }
             else

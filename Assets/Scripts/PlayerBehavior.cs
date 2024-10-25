@@ -70,22 +70,25 @@ public class PlayerBehavior : MonoBehaviour
     /// <summary>
     /// プレイヤーを現在の向きに応じて放物線状にジャンプさせます。
     /// </summary>
-    public void Jump(float maxJumpForce, float jumpAngle)
+    public void Jump(float? maxJumpForce, float? jumpAngle)
     {
-        // ジャンプの角度をラジアンに変換
-        float angleInRadians = jumpAngle * Mathf.Deg2Rad;
+        if(isGrounded)
+        {
+            // ジャンプの角度をラジアンに変換
+            float angleInRadians = (float)jumpAngle * Mathf.Deg2Rad;
 
-        // 右向きか左向きかでジャンプ方向を決定
-        float jumpDirectionX = facingRight ? Mathf.Cos(angleInRadians) : -Mathf.Cos(angleInRadians);
+            // 右向きか左向きかでジャンプ方向を決定
+            float jumpDirectionX = facingRight ? Mathf.Cos(angleInRadians) : -Mathf.Cos(angleInRadians);
 
-        // ジャンプ力のベクトルを計算
-        Vector2 jumpForce = new Vector2(jumpDirectionX, Mathf.Sin(angleInRadians)) * maxJumpForce;
+            // ジャンプ力のベクトルを計算
+            Vector2 jumpForce = new Vector2(jumpDirectionX, Mathf.Sin(angleInRadians)) * (float)maxJumpForce;
 
-        // プレイヤーに力を加える
-        rb.AddForce(jumpForce, ForceMode2D.Impulse);
+            // プレイヤーに力を加える
+            rb.AddForce(jumpForce, ForceMode2D.Impulse);
 
-        // ジャンプ中は地面から離れる
-        isGrounded = false;
+            // ジャンプ中は地面から離れる
+            isGrounded = false;
+        }        
     }
 
     /// <summary>
@@ -100,10 +103,10 @@ public class PlayerBehavior : MonoBehaviour
         Debug.Log(facingRight ? "右向き" : "左向き");
     }
 
-    public void OverwritePhysicsMaterial(float friction, float bounciness)
+    public void OverwritePhysicsMaterial(float? friction, float? bounciness)
     {
-        playerMaterial.friction = friction;
-        playerMaterial.bounciness = bounciness;
+        playerMaterial.friction = (float)friction;
+        playerMaterial.bounciness = (float)bounciness;
         rb.sharedMaterial = playerMaterial;
     }
 
