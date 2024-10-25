@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerBehavior : MonoBehaviour
 {
     // ジャンプ力の最大値をInspectorから設定可能にする
     [Header("ジャンプ設定")]
@@ -19,9 +19,9 @@ public class PlayerController : MonoBehaviour
     private bool facingRight = true;
 
     /// <summary>
-    /// 初期化処理を行います。Rigidbody2Dコンポーネントを取得します。
+    /// PlayerBehaviorの初期化処理
     /// </summary>
-    void Start()
+    public void Initialize()
     {
         // プレイヤーのRigidbody2Dコンポーネントを取得
         rb = GetComponent<Rigidbody2D>();
@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// 矢印キーの入力によってプレイヤーの向きを変更します。
     /// </summary>
-    void HandleDirectionChange()
+    public void HandleDirectionChange()
     {
         float horizontalInput = Input.GetAxis("Horizontal"); // 左右の入力を取得
 
@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// プレイヤーを現在の向きに応じて放物線状にジャンプさせます。
     /// </summary>
-    void Jump(float maxJumpForce, float jumpAngle)
+    public void Jump(float maxJumpForce, float jumpAngle)
     {
         // ジャンプの角度をラジアンに変換
         float angleInRadians = jumpAngle * Mathf.Deg2Rad;
@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// プレイヤーの向きを反転させます。
     /// </summary>
-    void Flip()
+    public void Flip()
     {
         facingRight = !facingRight; // 向きを反転
         Vector3 scaler = transform.localScale;
@@ -98,7 +98,7 @@ public class PlayerController : MonoBehaviour
         transform.localScale = scaler;
     }
 
-    private void OverwritePhysicsMaterial(float friction, float bounciness)
+    public void OverwritePhysicsMaterial(float friction, float bounciness)
     {
         playerMaterial.friction = friction;
         playerMaterial.bounciness = bounciness;
