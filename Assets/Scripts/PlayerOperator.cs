@@ -23,9 +23,9 @@ public class PlayerOperator : MonoBehaviour
         playerBehavior.Initialize();
 
         // ディクショナリの初期化
-        testDict.Add("Jump1", arguments);
-        testDict.Add("TurnLeft1", arguments);
         testDict.Add("TurnRight1", arguments);
+        testDict.Add("TurnLeft1", arguments);
+        testDict.Add("Jump1", arguments);
         testDict.Add("Jump2", arguments);
         testDict.Add("TypoCommand1", arguments);
 
@@ -42,14 +42,14 @@ public class PlayerOperator : MonoBehaviour
                 playerBehavior.Jump(item.Value[0], item.Value[1]);
             }
             else if (Regex.IsMatch(item.Key, @"^TurnLeft\d$"))
-            {
-                // "TurnLeft1" などのキーに対する処理
-                Debug.Log("TurnLeft Key: " + item.Key + " : " + item.Value);
+            {                
+                playerBehavior.facingRight = true;
+                playerBehavior.Flip();
             }
             else if (Regex.IsMatch(item.Key, @"^TurnRight\d$"))
             {
-                // "TurnRight1" などのキーに対する処理
-                Debug.Log("TurnRight Key: " + item.Key + " : " + item.Value);
+                playerBehavior.facingRight = false;
+                playerBehavior.Flip();
             }
             else
             {
