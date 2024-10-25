@@ -37,9 +37,9 @@ public class DSLInterpreter : MonoBehaviour
             string trimmedCommand = command.Trim(); // 各行の前後の空白をトリミング
 
             // jumpコマンド
-            if (Regex.IsMatch(trimmedCommand, @"jump\(\d+,\s*\d+\)"))
+            if (Regex.IsMatch(trimmedCommand, @"jump\(\d+(\.\d+)?,\s*\d+(\.\d+)?\)"))
             {
-                var match = Regex.Match(trimmedCommand, @"jump\((\d+),\s*(\d+)\)");
+                var match = Regex.Match(trimmedCommand, @"jump\(\d+(\.\d+)?,\s*\d+(\.\d+)?\)");
                 float jumpForce = float.Parse(match.Groups[1].Value); // 1つ目の引数
                 float jumpAngle = float.Parse(match.Groups[2].Value);  // 2つ目の引数
 
@@ -48,9 +48,9 @@ public class DSLInterpreter : MonoBehaviour
                 jumpIndex++; // インデックスをインクリメント
             }
             // TurnLeftコマンド
-            else if (Regex.IsMatch(trimmedCommand, @"TurnLeft\(\d+\)", RegexOptions.IgnoreCase))
+            else if (Regex.IsMatch(trimmedCommand, @"TurnLeft\((\d+(\.\d+)?)\)", RegexOptions.IgnoreCase))
             {
-                var match = Regex.Match(trimmedCommand, @"TurnLeft\((\d+)\)", RegexOptions.IgnoreCase);
+                var match = Regex.Match(trimmedCommand, @"TurnLeft\((\d+(\.\d+)?)\)", RegexOptions.IgnoreCase);
                 float angle = float.Parse(match.Groups[1].Value);
 
                 float?[] arguments = { angle , null};
@@ -58,9 +58,9 @@ public class DSLInterpreter : MonoBehaviour
                 turnLeftIndex++; // インデックスをインクリメント
             }
             // TurnRightコマンド
-            else if (Regex.IsMatch(trimmedCommand, @"TurnRight\(\d+\)", RegexOptions.IgnoreCase))
+            else if (Regex.IsMatch(trimmedCommand, @"TurnRight\((\d+(\.\d+)?)\)", RegexOptions.IgnoreCase))
             {
-                var match = Regex.Match(trimmedCommand, @"TurnRight\((\d+)\)", RegexOptions.IgnoreCase);
+                var match = Regex.Match(trimmedCommand, @"TurnRight\((\d+(\.\d+)?)\)", RegexOptions.IgnoreCase);
                 float angle = float.Parse(match.Groups[1].Value);
 
                 float?[] arguments = { angle , null};
