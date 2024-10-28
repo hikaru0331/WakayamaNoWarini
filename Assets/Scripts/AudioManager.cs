@@ -40,4 +40,14 @@ public class AudioManager : MonoBehaviour
     {
 
     }
+
+    public void SetBGMVolume(float volume)
+{
+    audioMixer.SetFloat("BGM", volume);
+}
+
+public void SetSEVolume(float volume)
+{
+    audioMixer.SetFloat("SE", volume);
+}
 }
