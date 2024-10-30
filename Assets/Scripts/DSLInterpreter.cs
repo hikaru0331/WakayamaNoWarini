@@ -2,21 +2,39 @@ using UnityEngine;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System;
+using TMPro;
 
 public class DSLInterpreter : MonoBehaviour
 {
     private CharacterController characterController;
-    private string command = "Jump(12, 45);\nTurnLeft(90);\nTurnRight(45);\nOverwritePhysicsMaterial(50.0, 0.3);\n";
+    // private string command = "Jump(12, 45);\nTurnLeft(90);\nTurnRight(45);\nOverwritePhysicsMaterial(50.0, 0.3);\n";
+
+    [SerializeField] private TMP_InputField inputField;
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-        Dictionary<string, float?[]> commandDic = ReturnDictionary();
+        // Dictionary<string, float?[]> commandDic = ReturnDictionary();
+    }
+
+    private string ExtractCommand(string inputText)
+    {
+        // 正規表現パターンを定義：{}の間の内容をマッチさせる
+        string pattern = @"\{([^}]*)\}";
+
+        // マッチする部分を取得
+        Match match = Regex.Match(inputText, pattern);
+
+        // コマンドが見つかった場合、Trimで前後の空白を削除して返す
+        return match.Success ? match.Groups[1].Value.Trim() : "コマンドは見つかりませんでした。";
     }
 
     public Dictionary<string, float?[]> ReturnDictionary()
     {
-        string script = command;
+        string script = inputField.text;
+
+        script = ExtractCommand(script);
+
         // 改行でスクリプトを分割
         string[] lines = script.Split(new[] { ';', '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
 

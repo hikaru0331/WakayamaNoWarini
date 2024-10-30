@@ -22,6 +22,11 @@ public class PlayerOperator : MonoBehaviour
     {
         playerBehavior.Initialize();
 
+        // commandDic = dSLInterpreter.ReturnDictionary();
+    }
+
+    public void OnClick()
+    {
         commandDic = dSLInterpreter.ReturnDictionary();
     }
 
