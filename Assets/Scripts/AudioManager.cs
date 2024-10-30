@@ -5,6 +5,11 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance_AudioManager;
+    private float currentSEVolume = 1.0f;
+    private float currentBGMVolume = 1.0f;
+    private float bgmVolume = 1.0f;
+    private float seVolume = 1.0f;
+
     private void Awake()
     {
         if (instance_AudioManager == null)
@@ -23,6 +28,36 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource SESource;
     [SerializeField] private AudioSource BGMSource;
 
+    public float BGMVolume
+    {
+        get { return bgmVolume; }
+        set
+        {
+            bgmVolume = Mathf.Clamp01(value);
+            UpdateBGMVolume();
+        }
+    }
+
+    public float SEVolume
+    {
+        get { return seVolume; }
+        set
+        {
+            seVolume = Mathf.Clamp01(value);
+            UpdateSEVolume();
+        }
+    }
+
+    private void UpdateBGMVolume()
+    {
+        BGMSource.volume = bgmVolume * currentBGMVolume;
+    }
+
+    private void UpdateSEVolume()
+    {
+        SESource.volume = seVolume * currentSEVolume;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +67,21 @@ public class AudioManager : MonoBehaviour
 
         CheckOverlap(this.audioData.SE_Data, "SE_Data");
         CheckOverlap(this.audioData.BGM_Data, "BGM_Data");
+        PlayBGM(0);
+
+
+        if (PlayerPrefs.HasKey("BGMVolume"))
+        {
+            bgmVolume = PlayerPrefs.GetFloat("BGMVolume");
+        }
+        if (PlayerPrefs.HasKey("SEVolume"))
+        {
+            seVolume = PlayerPrefs.GetFloat("SEVolume");
+        }
+
+        UpdateBGMVolume();
+        UpdateSEVolume();
+
     }
 
     //オーディオIDが重複していないかを確認する
@@ -67,11 +117,14 @@ public class AudioManager : MonoBehaviour
         return -1;
     }
 
+
     public void PlaySE(int id)
     {
         int index = this.ConvertIdIntoIndex(this.audioData.SE_Data, id);
+        if (index == -1) return;
         this.SESource.clip = this.audioData.SE_Data[index].clip;
-        this.SESource.volume = this.audioData.SE_Data[index].volume;
+        currentSEVolume = this.audioData.SE_Data[index].volume;
+        UpdateSEVolume();
         this.SESource.Play();
     }
 
@@ -93,8 +146,14 @@ public class AudioManager : MonoBehaviour
     public void PlayBGM(int id)
     {
         int index = this.ConvertIdIntoIndex(this.audioData.BGM_Data, id);
+        if (index == -1) return;
+        if (BGMSource.isPlaying && BGMSource.clip == audioData.BGM_Data[index].clip)
+        {
+            return;
+        }
         this.BGMSource.clip = this.audioData.BGM_Data[index].clip;
-        this.BGMSource.volume = this.audioData.BGM_Data[index].volume;
+        currentBGMVolume = this.audioData.BGM_Data[index].volume;
+        UpdateBGMVolume();
         this.BGMSource.Play();
     }
 
