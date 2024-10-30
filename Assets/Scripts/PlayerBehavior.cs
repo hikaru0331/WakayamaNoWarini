@@ -74,6 +74,9 @@ public class PlayerBehavior : MonoBehaviour
     {
         if(isGrounded)
         {
+            // ジャンプ力の最大値を0.0fから20.0fの範囲に制限
+            float clampedJumpForce = Mathf.Clamp((float)maxJumpForce, 0.0f, 20.0f);
+
             // ジャンプの角度をラジアンに変換
             float angleInRadians = (float)jumpAngle * Mathf.Deg2Rad;
 
@@ -81,7 +84,7 @@ public class PlayerBehavior : MonoBehaviour
             float jumpDirectionX = facingRight ? Mathf.Cos(angleInRadians) : -Mathf.Cos(angleInRadians);
 
             // ジャンプ力のベクトルを計算
-            Vector2 jumpForce = new Vector2(jumpDirectionX, Mathf.Sin(angleInRadians)) * (float)maxJumpForce;
+            Vector2 jumpForce = new Vector2(jumpDirectionX, Mathf.Sin(angleInRadians)) * clampedJumpForce;
 
             // プレイヤーに力を加える
             rb.AddForce(jumpForce, ForceMode2D.Impulse);

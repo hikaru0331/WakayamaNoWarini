@@ -202,7 +202,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxJumpForce: 12
   jumpAngle: 45
-  isGrounded: 1
 --- !u!50 &134520659
 Rigidbody2D:
   serializedVersion: 4
@@ -1405,7 +1404,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1216655440
 Transform:
   m_ObjectHideFlags: 0
