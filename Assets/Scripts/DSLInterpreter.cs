@@ -57,9 +57,9 @@ public class DSLInterpreter : MonoBehaviour
             string trimmedCommand = command.Trim(); 
 
             // jumpコマンド
-            if (Regex.IsMatch(trimmedCommand, @"Jump\((\d+(\.\d+)?),\s*(\d+(\.\d+)?)\)"))
+            if (Regex.IsMatch(trimmedCommand, @"Jump\((-?\d+(\.\d+)?),\s*(-?\d+(\.\d+)?)\)"))
             {
-                var match = Regex.Match(trimmedCommand, @"Jump\((\d+(\.\d+)?),\s*(\d+(\.\d+)?)\)");
+                var match = Regex.Match(trimmedCommand, @"Jump\((-?\d+(\.\d+)?),\s*(-?\d+(\.\d+)?)\)");
                 try
                 {
                     float jumpForce = float.Parse(match.Groups[1].Value.Trim(), System.Globalization.CultureInfo.InvariantCulture);
@@ -75,9 +75,9 @@ public class DSLInterpreter : MonoBehaviour
                 }
             }
             // TurnLeftコマンド
-            else if (Regex.IsMatch(trimmedCommand, @"TurnLeft\((\d+(\.\d+)?)\)", RegexOptions.IgnoreCase))
+            else if (Regex.IsMatch(trimmedCommand, @"TurnLeft\(\)", RegexOptions.IgnoreCase))
             {
-                var match = Regex.Match(trimmedCommand, @"TurnLeft\((\d+(\.\d+)?)\)", RegexOptions.IgnoreCase);
+                var match = Regex.Match(trimmedCommand, @"TurnLeft\(\)", RegexOptions.IgnoreCase);
                 try
                 {
                     float angle = float.Parse(match.Groups[1].Value.Trim(), System.Globalization.CultureInfo.InvariantCulture);
@@ -91,9 +91,9 @@ public class DSLInterpreter : MonoBehaviour
                 }
             }
             // TurnRightコマンド
-            else if (Regex.IsMatch(trimmedCommand, @"TurnRight\((\d+(\.\d+)?)\)", RegexOptions.IgnoreCase))
+            else if (Regex.IsMatch(trimmedCommand, @"TurnRight\(\)", RegexOptions.IgnoreCase))
             {
-                var match = Regex.Match(trimmedCommand, @"TurnRight\((\d+(\.\d+)?)\)", RegexOptions.IgnoreCase);
+                var match = Regex.Match(trimmedCommand, @"TurnRight\(\)", RegexOptions.IgnoreCase);
                 try
                 {
                     float angle = float.Parse(match.Groups[1].Value.Trim(), System.Globalization.CultureInfo.InvariantCulture);
@@ -107,9 +107,9 @@ public class DSLInterpreter : MonoBehaviour
                 }
             }
             // OverwritePhysicsMaterialコマンド
-            else if (Regex.IsMatch(trimmedCommand, @"OverwritePhysicsMaterial\((\d+(\.\d+)?),\s*(\d+(\.\d+)?)\)", RegexOptions.IgnoreCase))
+            else if (Regex.IsMatch(trimmedCommand, @"OverwritePhysicsMaterial\((-?\d+(\.\d+)?),\s*(-?\d+(\.\d+)?)\)", RegexOptions.IgnoreCase))
             {
-                var match = Regex.Match(trimmedCommand, @"OverwritePhysicsMaterial\((\d+(\.\d+)?),\s*(\d+(\.\d+)?)\)", RegexOptions.IgnoreCase);
+                var match = Regex.Match(trimmedCommand, @"OverwritePhysicsMaterial\((-?\d+(\.\d+)?),\s*(-?\d+(\.\d+)?)\)", RegexOptions.IgnoreCase);
                 try
                 {
                     float friction = float.Parse(match.Groups[1].Value.Trim(), System.Globalization.CultureInfo.InvariantCulture);
