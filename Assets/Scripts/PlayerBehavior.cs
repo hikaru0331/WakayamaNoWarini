@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerBehavior : MonoBehaviour
@@ -18,6 +19,9 @@ public class PlayerBehavior : MonoBehaviour
     // プレイヤーの向き
     [System.NonSerialized]
     public bool facingRight = true;
+
+    // ジャンプ時のイベント
+    public event Action OnJump;
 
     /// <summary>
     /// PlayerBehaviorの初期化処理
@@ -74,6 +78,9 @@ public class PlayerBehavior : MonoBehaviour
     {
         if(isGrounded)
         {
+            // ジャンプ時のイベントを発火
+            OnJump?.Invoke();
+
             // ジャンプ力の最大値を0.0fから20.0fの範囲に制限
             float clampedJumpForce = Mathf.Clamp((float)maxJumpForce, 0.0f, 20.0f);
 
