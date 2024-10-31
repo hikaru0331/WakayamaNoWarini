@@ -6,7 +6,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Transform playerTransform;
 
     // カメラが動く基準となるy座標の範囲
-    private float cameraMoveThreshold = 9.5f;
+    private float cameraMoveThreshold = 12f;
 
     // カメラが移動する際のy座標の位置
     private float cameraMoveValueY = 19f;
