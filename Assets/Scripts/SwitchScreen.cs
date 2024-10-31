@@ -17,8 +17,8 @@ public class SwitchScreen : MonoBehaviour
     // 二次元配列でスクリーンの座標を管理
     private Vector3[,] screenPos = new Vector3[2, 2]
     {
-        { new Vector3(200, 85, 0), new Vector3(375, 250, 0) }, // コマンド入力モード
-        { new Vector3(75, 0, 0), new Vector3(620, 420, 0) } // プレイモード
+        { new Vector3(195, 60, 0), new Vector3(375, 250, 0) }, // コマンド入力モード
+        { new Vector3(100, -15, 0), new Vector3(565, 380, 0) } // プレイモード
     };
 
     private Vector3[,] commandPanelPos = new Vector3[2, 2]
