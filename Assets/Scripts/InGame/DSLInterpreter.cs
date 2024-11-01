@@ -133,7 +133,7 @@ public class DSLInterpreter : MonoBehaviour
 
     public void ResetDictionary()
     {
-        inputField.text = "public class PlayerController : MonoBehaviour\n{\n\n}";
+        inputField.text = "public class PlayerController : MonoBehaviour\n{\n    // press Shift + Enter\n}";
         commandDic.Clear();
     }
 
