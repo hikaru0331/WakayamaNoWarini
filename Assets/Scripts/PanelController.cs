@@ -27,14 +27,14 @@ public class PanelController : MonoBehaviour
     public void OpenPanel()
     {
         optionPanel.SetActive(true);
-        AudioManager.instance_AudioManager.PlaySE(0);
+        AudioManager.instance_AudioManager.PlaySE(1);
 
     }
 
     public void ClosePanel()
     {
         optionPanel.SetActive(false);
-        AudioManager.instance_AudioManager.PlaySE(0);
+        AudioManager.instance_AudioManager.PlaySE(3);
 
     }
 }
