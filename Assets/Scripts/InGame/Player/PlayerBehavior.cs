@@ -2,7 +2,6 @@ using System;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 
-
 public class PlayerBehavior : MonoBehaviour
 {
     // ジャンプ力の最大値をInspectorから設定可能にする
@@ -27,6 +26,8 @@ public class PlayerBehavior : MonoBehaviour
     // 着地時のイベント
     public event Action OnLandCallback;
 
+    [SerializeField]
+    private InGameSceneManager inGameSceneManager;
     public event Action OnGoalCallback;
 
     private System.Threading.CancellationToken token;
@@ -137,12 +138,13 @@ public class PlayerBehavior : MonoBehaviour
         OnLandCallback?.Invoke();
     }
 
-    private void OnCollisionEnter2D(Collision2D other) 
+    private async UniTask OnCollisionEnter2D(Collision2D other) 
     {
         if(other.gameObject.CompareTag("Goal"))
         {
             OnGoalCallback?.Invoke();
-            Debug.Log("Goal");
+            await UniTask.WaitForSeconds(4.0f, cancellationToken: token);
+            inGameSceneManager.OnGameCleared();
         }
     }
 }

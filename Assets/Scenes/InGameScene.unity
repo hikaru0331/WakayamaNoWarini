@@ -254,6 +254,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxJumpForce: 20
   jumpAngle: 60
+  inGameSceneManager: {fileID: 296408303}
 --- !u!50 &8278619
 Rigidbody2D:
   serializedVersion: 4
