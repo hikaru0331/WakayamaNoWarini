@@ -22,8 +22,8 @@ public class ScenesManager : MonoBehaviour
 
     public void OnStartButtonClicked()
     {
-        SceneManager.LoadScene("SampleScene");
-        AudioManager.instance_AudioManager.PlaySE(0);
+        SceneManager.LoadScene("GameScene");
+        AudioManager.instance_AudioManager.PlaySE(1);
     }
 
 }
