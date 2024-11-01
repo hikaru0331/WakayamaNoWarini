@@ -38,7 +38,7 @@ public class PlayerBehavior : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         playerMaterial = new PhysicsMaterial2D();
-        OverwritePhysicsMaterial(50.0f, 0.3f);
+        OverwritePhysicsMaterial(50.0f, 0.1f);
     }
 
     /// <summary>
@@ -124,7 +124,7 @@ public class PlayerBehavior : MonoBehaviour
     public void OverwritePhysicsMaterial(float? friction, float? bounciness)
     {
         playerMaterial.friction = (float)friction;
-        playerMaterial.bounciness = (float)bounciness;
+        playerMaterial.bounciness = Mathf.Clamp((float)bounciness, 0.1f, 0.9f);
         rb.sharedMaterial = playerMaterial;
     }
 
