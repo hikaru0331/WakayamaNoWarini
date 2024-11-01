@@ -9,7 +9,7 @@ public class CameraController : MonoBehaviour
     private float cameraMoveThreshold = 12f;
 
     // カメラが移動する際のy座標の位置
-    private float cameraMoveValueY = 19f;
+    private float cameraMoveValueY = 23f;
 
     /// <summary>
     /// プレイヤーのy座標に基づいてカメラの位置を更新する

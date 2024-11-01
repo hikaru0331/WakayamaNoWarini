@@ -90,7 +90,7 @@ public class PlayerBehavior : MonoBehaviour
             await UniTask.WaitForSeconds(0.3f, cancellationToken: token);
 
             // ジャンプ力の最大値を0.0fから20.0fの範囲に制限
-            float clampedJumpForce = Mathf.Clamp((float)maxJumpForce, 0.0f, 20.0f);
+            float clampedJumpForce = Mathf.Clamp((float)maxJumpForce, 0.0f, 21.0f);
 
             // ジャンプの角度をラジアンに変換
             float angleInRadians = (float)jumpAngle * Mathf.Deg2Rad;

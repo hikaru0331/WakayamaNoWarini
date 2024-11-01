@@ -252,8 +252,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e3235d25e4a7484dbec2be69ca3fa13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxJumpForce: 12
-  jumpAngle: 45
+  maxJumpForce: 21
+  jumpAngle: 90
 --- !u!50 &8278619
 Rigidbody2D:
   serializedVersion: 4
