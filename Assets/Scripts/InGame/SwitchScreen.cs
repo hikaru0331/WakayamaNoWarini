@@ -8,6 +8,8 @@ public class SwitchScreen : MonoBehaviour
 {
     [SerializeField] private float transitionTime = 0.5f;
 
+    [SerializeField] private GameObject commandObject;
+    private RectTransform commandRectTransform;
     [SerializeField] private TMP_InputField commandPanel;
     private RectTransform commandPanelRectTransform;
     [SerializeField] private TextMeshProUGUI commandPanelText;
@@ -23,15 +25,17 @@ public class SwitchScreen : MonoBehaviour
 
     private Vector3[,] commandPanelPos = new Vector3[2, 2]
     {
-        { new Vector3(-200, 0, 0), new Vector3(375, 420, 0) }, // コマンド入力モード
-        { new Vector3(-315, 0, 0), new Vector3(140, 420, 0) } // プレイモード
+        { new Vector3(-200, 15, 0), new Vector3(390, 390, 0) }, // コマンド入力モード
+        { new Vector3(-295, 110, 0), new Vector3(200, 200, 0) } // プレイモード
     };
 
     private int[] fontSize = { 16, 5 };
+    private int[] commandPanelTop = { 35, 15 };
 
     // Start is called before the first frame update
     void Start()
     {
+        commandRectTransform = commandObject.GetComponent<RectTransform>();
         commandPanelRectTransform = commandPanel.GetComponent<RectTransform>();
         ExpandScreen(0);
     }
@@ -54,8 +58,21 @@ public class SwitchScreen : MonoBehaviour
         screen.transform.DOLocalMove(screenPos[mode, 0], transitionTime);
         screen.transform.DOScale(screenPos[mode, 1], transitionTime);
 
-        commandPanel.transform.DOLocalMove(commandPanelPos[mode, 0], transitionTime);
-        commandPanelRectTransform.DOSizeDelta(commandPanelPos[mode, 1], transitionTime);
+        commandObject.transform.DOLocalMove(commandPanelPos[mode, 0], transitionTime);
+        commandRectTransform.DOSizeDelta(commandPanelPos[mode, 1], transitionTime);
+
+        // フォントサイズをアニメーション
         DOTween.To(() => commandPanelText.fontSize, x => commandPanelText.fontSize = x, fontSize[mode], transitionTime);
+
+        // Topの値をアニメーション、Bottomは0固定
+        DOTween.To(
+            () => commandPanelRectTransform.offsetMax.y,
+            y => commandPanelRectTransform.offsetMax = new Vector2(commandPanelRectTransform.offsetMax.x, y),
+            -commandPanelTop[mode],  // 目標Topの値を設定
+            transitionTime
+        );
+
+        // Bottomを0に固定
+        commandPanelRectTransform.offsetMin = new Vector2(commandPanelRectTransform.offsetMin.x, 0);
     }
 }
