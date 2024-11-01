@@ -1,5 +1,7 @@
 using System;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
+
 
 public class PlayerBehavior : MonoBehaviour
 {
@@ -21,7 +23,10 @@ public class PlayerBehavior : MonoBehaviour
     public bool facingRight = true;
 
     // ジャンプ時のイベント
-    public event Action OnJump;
+    public event Action OnJumpCallback;
+    public event Action OnLandCallback;
+
+    private System.Threading.CancellationToken token;
 
     /// <summary>
     /// PlayerBehaviorの初期化処理
@@ -74,12 +79,14 @@ public class PlayerBehavior : MonoBehaviour
     /// <summary>
     /// プレイヤーを現在の向きに応じて放物線状にジャンプさせます。
     /// </summary>
-    public void Jump(float? maxJumpForce, float? jumpAngle)
+    public async UniTask Jump(float? maxJumpForce, float? jumpAngle)
     {
         if(isGrounded)
         {
             // ジャンプ時のイベントを発火
-            OnJump?.Invoke();
+            OnJumpCallback?.Invoke();
+
+            await UniTask.WaitForSeconds(0.3f, cancellationToken: token);
 
             // ジャンプ力の最大値を0.0fから20.0fの範囲に制限
             float clampedJumpForce = Mathf.Clamp((float)maxJumpForce, 0.0f, 20.0f);
@@ -124,5 +131,6 @@ public class PlayerBehavior : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other) 
     { 
         isGrounded = true;
+        OnLandCallback?.Invoke();
     }
 }

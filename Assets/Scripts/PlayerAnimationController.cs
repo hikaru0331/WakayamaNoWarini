@@ -1,18 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 public class PlayerAnimationController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private PlayerBehavior playerBehavior;
+    private Animator playerAnimator;
+
+    public void Start()
     {
-        
+        playerBehavior = GetComponent<PlayerBehavior>();
+        playerAnimator = GetComponent<Animator>();
+
+        playerBehavior.OnJumpCallback += PlayJumpAnimation;
+        playerBehavior.OnLandCallback += StopJumpAnimation;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void PlayJumpAnimation()
     {
-        
+        playerAnimator.SetBool("isJumping", true);
+    }
+
+    private void StopJumpAnimation()
+    {
+        playerAnimator.SetBool("isJumping", false);
     }
 }
