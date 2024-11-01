@@ -38,7 +38,7 @@ public class PlayerBehavior : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         playerMaterial = new PhysicsMaterial2D();
-        // OverwritePhysicsMaterial(50.0f, 0.3f); 後で消す
+        OverwritePhysicsMaterial(50.0f, 0.3f);
     }
 
     /// <summary>
