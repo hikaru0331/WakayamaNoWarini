@@ -49,8 +49,12 @@ MonoBehaviour:
   - id: 0
     clip: {fileID: 8300000, guid: 420709ffac408434e85a3dfe0a6924a9, type: 3}
     volume: 0.266
-    memo: 
+    memo: "\u30C6\u30B9\u30C8\u7528\u3002\u57FA\u672C\u4F7F\u308F\u306A\u3044"
   - id: 1
-    clip: {fileID: 8300000, guid: 420709ffac408434e85a3dfe0a6924a9, type: 3}
+    clip: {fileID: 8300000, guid: 9f793ddd0ada4fc48bb2d21fea20f1b3, type: 3}
     volume: 0.266
-    memo: 
+    memo: "\u30BF\u30A4\u30C8\u30EBBGM"
+  - id: 2
+    clip: {fileID: 8300000, guid: 6bc6babb3fcd49a42987b8982d9fb0bc, type: 3}
+    volume: 0.266
+    memo: "\u30B2\u30FC\u30E0\u4E2DBGM"
