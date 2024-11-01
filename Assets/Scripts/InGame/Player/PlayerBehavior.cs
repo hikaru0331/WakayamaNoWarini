@@ -45,7 +45,7 @@ public class PlayerBehavior : MonoBehaviour
     }
 
     /// <summary>
-    /// ジャンプや向きの変更を処理します。最終的には消す
+    /// ジャンプや向きの変更を処理します。最終的にはコメントアウト
     /// </summary>
     void Update()
     {
@@ -60,11 +60,11 @@ public class PlayerBehavior : MonoBehaviour
     }
 
     /// <summary>
-    /// 矢印キーの入力によってプレイヤーの向きを変更します。
+    /// 矢印キーの入力によってプレイヤーの向きを変更します。最終的にはコメントアウト
     /// </summary>
     public void HandleDirectionChange()
     {
-        float horizontalInput = Input.GetAxis("Horizontal"); // 左右の入力を取得。最終的には消す行
+        float horizontalInput = Input.GetAxis("Horizontal");
 
         // 右向きに移動する場合
         if (horizontalInput > 0 && !facingRight)

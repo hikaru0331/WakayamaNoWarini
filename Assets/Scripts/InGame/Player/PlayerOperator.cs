@@ -35,6 +35,8 @@ public class PlayerOperator : MonoBehaviour
             commandDic = dSLInterpreter.ReturnDictionary();
 
             ReadDictionary();
+
+            // ここで辞書の中身をリセットするメソッドを読んでください
         }
     }
 
