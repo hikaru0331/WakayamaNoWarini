@@ -21,7 +21,10 @@ public class PlayerOperator : MonoBehaviour
     private void Start() 
     {
         playerBehavior.Initialize();
+    }
 
+    public void OnClick()
+    {
         commandDic = dSLInterpreter.ReturnDictionary();
     }
 
@@ -29,6 +32,8 @@ public class PlayerOperator : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.S))
         {
+            commandDic = dSLInterpreter.ReturnDictionary();
+
             ReadDictionary();
         }
     }
