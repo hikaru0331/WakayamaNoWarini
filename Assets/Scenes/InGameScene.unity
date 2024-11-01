@@ -3023,8 +3023,8 @@ MonoBehaviour:
     key
     to Open Cheatsheet'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ebe6849d2bf066d439d66940108692a4, type: 2}
-  m_sharedMaterial: {fileID: -8371371781771975959, guid: ebe6849d2bf066d439d66940108692a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1742b188daddcf247807fc6e90d09afe, type: 2}
+  m_sharedMaterial: {fileID: -8371371781771975959, guid: 1742b188daddcf247807fc6e90d09afe, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5532,12 +5532,12 @@ MonoBehaviour:
       m_Calls: []
   m_text: "// \u30B8\u30E3\u30F3\u30D7\n    Jump( float power, float angle);\n   
     power : \u30B8\u30E3\u30F3\u30D7\u529B\n    angle : \u89D2\u5EA6\n\n// \u5411\u304D\u5909\u66F4\n   
-    TurnRight();\n    TurnLeft();\n\n// \u30B8\u30E3\u30F3\u30D7\n    OverwritePhysicsMaterial(
-    float friction, float bounciness);\n    friction : \u6469\u64E6\n    bounciness
-    : \u53CD\u767A\u4FC2\u6570 "
+    TurnRight();\n    TurnLeft();\n\n// \u6469\u64E6\u529B\u3068\u53CD\u767A\u4FC2\u6570\u306E\u5909\u66F4\n   
+    OverwritePhysicsMaterial( float friction, float bounciness);\n    friction :
+    \u6469\u64E6\n    bounciness : \u53CD\u767A\u4FC2\u6570 "
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ebe6849d2bf066d439d66940108692a4, type: 2}
-  m_sharedMaterial: {fileID: -8371371781771975959, guid: ebe6849d2bf066d439d66940108692a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1742b188daddcf247807fc6e90d09afe, type: 2}
+  m_sharedMaterial: {fileID: -8371371781771975959, guid: 1742b188daddcf247807fc6e90d09afe, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6048,8 +6048,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "public class PlayerController : MonoBehaviour\n{\n\n}\u200B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ebe6849d2bf066d439d66940108692a4, type: 2}
-  m_sharedMaterial: {fileID: -8371371781771975959, guid: ebe6849d2bf066d439d66940108692a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1742b188daddcf247807fc6e90d09afe, type: 2}
+  m_sharedMaterial: {fileID: -8371371781771975959, guid: 1742b188daddcf247807fc6e90d09afe, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6419,7 +6419,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Enter text...
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ebe6849d2bf066d439d66940108692a4, type: 2}
+  m_fontAsset: {fileID: 0}
   m_sharedMaterial: {fileID: -8371371781771975959, guid: ebe6849d2bf066d439d66940108692a4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -9102,8 +9102,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: CheatSheet
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ebe6849d2bf066d439d66940108692a4, type: 2}
-  m_sharedMaterial: {fileID: -8371371781771975959, guid: ebe6849d2bf066d439d66940108692a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1742b188daddcf247807fc6e90d09afe, type: 2}
+  m_sharedMaterial: {fileID: -8371371781771975959, guid: 1742b188daddcf247807fc6e90d09afe, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -9166,7 +9166,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &2103539991

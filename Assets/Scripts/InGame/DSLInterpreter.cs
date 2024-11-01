@@ -78,33 +78,30 @@ public class DSLInterpreter : MonoBehaviour
             // TurnLeftコマンド
             else if (Regex.IsMatch(trimmedCommand, @"TurnLeft\(\)", RegexOptions.IgnoreCase))
             {
-                var match = Regex.Match(trimmedCommand, @"TurnLeft\(\)", RegexOptions.IgnoreCase);
                 try
                 {
-                    float angle = float.Parse(match.Groups[1].Value.Trim(), System.Globalization.CultureInfo.InvariantCulture);
-                    float?[] arguments = { angle, null };
-                    commandDic.Add("TurnLeft" + turnLeftIndex, arguments);
+                    // 引数なしでTurnLeftコマンドを登録
+                    commandDic.Add("TurnLeft" + turnLeftIndex, null);
                     turnLeftIndex++;
                 }
-                catch (FormatException e)
+                catch (Exception e)
                 {
-                    Debug.LogError($"Failed to parse TurnLeft angle: {e.Message}");
+                    Debug.LogError($"Failed to process TurnLeft command: {e.Message}");
                 }
             }
+
             // TurnRightコマンド
             else if (Regex.IsMatch(trimmedCommand, @"TurnRight\(\)", RegexOptions.IgnoreCase))
             {
-                var match = Regex.Match(trimmedCommand, @"TurnRight\(\)", RegexOptions.IgnoreCase);
                 try
                 {
-                    float angle = float.Parse(match.Groups[1].Value.Trim(), System.Globalization.CultureInfo.InvariantCulture);
-                    float?[] arguments = { angle, null };
-                    commandDic.Add("TurnRight" + turnRightIndex, arguments);
+                    // 引数なしでTurnRightコマンドを登録
+                    commandDic.Add("TurnRight" + turnRightIndex, null);
                     turnRightIndex++;
                 }
-                catch (FormatException e)
+                catch (Exception e)
                 {
-                    Debug.LogError($"Failed to parse TurnRight angle: {e.Message}");
+                    Debug.LogError($"Failed to process TurnRight command: {e.Message}");
                 }
             }
             // OverwritePhysicsMaterialコマンド

@@ -820,11 +820,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: b33956af-daf8-43b2-8e4c-b565fc081378
+  cloudProjectId: 23dd0409-11e3-4b19-9094-29b37c117466
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
   projectName: WakayamaNoWarini
-  organizationId: unity_fdf4349816ac146cdff9
+  organizationId: unity_8ec1072901185f89418b
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
