@@ -15,7 +15,5 @@ public class InGameSceneManager : MonoBehaviour
     public void OnGameCleared()
     {
         SceneManager.LoadScene("TitleScene");
-        AudioManager.instance_AudioManager.PlaySE(1);
-        AudioManager.instance_AudioManager.StopBGM();
     }
 }

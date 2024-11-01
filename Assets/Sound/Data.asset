@@ -18,15 +18,15 @@ MonoBehaviour:
     volume: 0.196
     memo: "\u30C6\u30B9\u30C8\u7528\u3002\u57FA\u672C\u4F7F\u308F\u306A\u3044"
   - id: 1
-    clip: {fileID: 8300000, guid: 3faa9fb5c382d2a48a8e67fc5f5da0cc, type: 3}
+    clip: {fileID: 8300000, guid: b4e9ebf412e475a488488f2dd92aa2bf, type: 3}
     volume: 0.196
     memo: "\u6C7A\u5B9A\u97F3"
   - id: 2
-    clip: {fileID: 8300000, guid: 4870f6de553db7f46a4315680a45917a, type: 3}
+    clip: {fileID: 8300000, guid: 0638715bf4daf1a4bb89436550121962, type: 3}
     volume: 0.196
     memo: "\u9078\u629E\u97F3"
   - id: 3
-    clip: {fileID: 8300000, guid: 0af29921a9958fa46afe4ace4263dd75, type: 3}
+    clip: {fileID: 8300000, guid: 3ac804dab02b1f646b08198dd5366895, type: 3}
     volume: 0.196
     memo: "\u30AD\u30E3\u30F3\u30BB\u30EB\u97F3"
   - id: 4
@@ -55,6 +55,6 @@ MonoBehaviour:
     volume: 0.266
     memo: "\u30BF\u30A4\u30C8\u30EBBGM"
   - id: 2
-    clip: {fileID: 8300000, guid: 6bc6babb3fcd49a42987b8982d9fb0bc, type: 3}
+    clip: {fileID: 8300000, guid: 09f604e4f8d742f4aa8a1f6185a612d0, type: 3}
     volume: 0.266
     memo: "\u30B2\u30FC\u30E0\u4E2DBGM"

@@ -2,7 +2,6 @@ using System;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 
-
 public class PlayerBehavior : MonoBehaviour
 {
     // ジャンプ力の最大値をInspectorから設定可能にする
@@ -27,6 +26,10 @@ public class PlayerBehavior : MonoBehaviour
     // 着地時のイベント
     public event Action OnLandCallback;
 
+    [SerializeField]
+    private InGameSceneManager inGameSceneManager;
+    public event Action OnGoalCallback;
+
     private System.Threading.CancellationToken token;
 
     /// <summary>
@@ -38,7 +41,7 @@ public class PlayerBehavior : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         playerMaterial = new PhysicsMaterial2D();
-        // OverwritePhysicsMaterial(50.0f, 0.3f); 後で消す
+        OverwritePhysicsMaterial(50.0f, 0.3f);
     }
 
     /// <summary>
@@ -90,10 +93,10 @@ public class PlayerBehavior : MonoBehaviour
             await UniTask.WaitForSeconds(0.3f, cancellationToken: token);
 
             // ジャンプ力の最大値を0.0fから20.0fの範囲に制限
-            float clampedJumpForce = Mathf.Clamp((float)maxJumpForce, 0.0f, 20.0f);
+            float clampedJumpForce = Mathf.Clamp((float)maxJumpForce, 1.0f, 21.0f);
 
             // ジャンプの角度をラジアンに変換
-            float angleInRadians = (float)jumpAngle * Mathf.Deg2Rad;
+            float angleInRadians = Mathf.Clamp((float)maxJumpForce, 0.0f, 90.0f) * Mathf.Deg2Rad;
 
             // 右向きか左向きかでジャンプ方向を決定
             float jumpDirectionX = facingRight ? Mathf.Cos(angleInRadians) : -Mathf.Cos(angleInRadians);
@@ -106,6 +109,10 @@ public class PlayerBehavior : MonoBehaviour
 
             // ジャンプ中は地面から離れる
             isGrounded = false;
+
+            // スタックしてジャンプできなくなるバグへの応急処置
+            await UniTask.WaitForSeconds(3.0f, cancellationToken: token);
+            isGrounded = true;
         }        
     }
 
@@ -124,14 +131,24 @@ public class PlayerBehavior : MonoBehaviour
     public void OverwritePhysicsMaterial(float? friction, float? bounciness)
     {
         playerMaterial.friction = (float)friction;
-        playerMaterial.bounciness = (float)bounciness;
+        playerMaterial.bounciness = Mathf.Clamp((float)bounciness, 0.1f, 0.9f);
         rb.sharedMaterial = playerMaterial;
     }
 
     //GroundJudgerが地面に触れている場合のみ、isGroundedをtrueにする
-    void OnTriggerEnter2D(Collider2D other) 
+    private void OnTriggerEnter2D(Collider2D other) 
     { 
         isGrounded = true;
         OnLandCallback?.Invoke();
+    }
+
+    private async UniTask OnCollisionEnter2D(Collision2D other) 
+    {
+        if(other.gameObject.CompareTag("Goal"))
+        {
+            OnGoalCallback?.Invoke();
+            await UniTask.WaitForSeconds(4.0f, cancellationToken: token);
+            inGameSceneManager.OnGameCleared();
+        }
     }
 }
