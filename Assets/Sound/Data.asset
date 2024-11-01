@@ -55,6 +55,6 @@ MonoBehaviour:
     volume: 0.266
     memo: "\u30BF\u30A4\u30C8\u30EBBGM"
   - id: 2
-    clip: {fileID: 8300000, guid: 6bc6babb3fcd49a42987b8982d9fb0bc, type: 3}
+    clip: {fileID: 8300000, guid: 09f604e4f8d742f4aa8a1f6185a612d0, type: 3}
     volume: 0.266
     memo: "\u30B2\u30FC\u30E0\u4E2DBGM"

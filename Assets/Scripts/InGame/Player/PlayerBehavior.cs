@@ -41,7 +41,7 @@ public class PlayerBehavior : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         playerMaterial = new PhysicsMaterial2D();
-        OverwritePhysicsMaterial(50.0f, 0.1f);
+        OverwritePhysicsMaterial(50.0f, 0.3f);
     }
 
     /// <summary>
@@ -96,7 +96,7 @@ public class PlayerBehavior : MonoBehaviour
             float clampedJumpForce = Mathf.Clamp((float)maxJumpForce, 1.0f, 21.0f);
 
             // ジャンプの角度をラジアンに変換
-            float angleInRadians = (float)jumpAngle * Mathf.Deg2Rad;
+            float angleInRadians = Mathf.Clamp((float)maxJumpForce, 0.0f, 90.0f) * Mathf.Deg2Rad;
 
             // 右向きか左向きかでジャンプ方向を決定
             float jumpDirectionX = facingRight ? Mathf.Cos(angleInRadians) : -Mathf.Cos(angleInRadians);
