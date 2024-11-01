@@ -8,6 +8,7 @@ public class DSLInterpreter : MonoBehaviour
 {
     private CharacterController characterController;
     // private string command = "Jump(12, 45);\nTurnLeft(90);\nTurnRight(45);\nOverwritePhysicsMaterial(50.0, 0.3);\n";
+    private Dictionary<string, float?[]> commandDic;
 
     [SerializeField] private TMP_InputField inputField;
 
@@ -39,7 +40,7 @@ public class DSLInterpreter : MonoBehaviour
         string[] lines = script.Split(new[] { ';', '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
 
         // 分割した配列をそのままParseCommandに渡す
-        Dictionary<string, float?[]> commandDic = ParseCommand(lines);
+        commandDic = ParseCommand(lines);
 
         return commandDic;
     }
@@ -131,6 +132,12 @@ public class DSLInterpreter : MonoBehaviour
         }
 
         return commandDic;
+    }
+
+    public void ResetDic()
+    {
+        inputField.text = "";
+        commandDic.Clear();
     }
 
 }
