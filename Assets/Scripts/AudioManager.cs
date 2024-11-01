@@ -67,8 +67,6 @@ public class AudioManager : MonoBehaviour
 
         CheckOverlap(this.audioData.SE_Data, "SE_Data");
         CheckOverlap(this.audioData.BGM_Data, "BGM_Data");
-        PlayBGM(0);
-
 
         if (PlayerPrefs.HasKey("BGMVolume"))
         {

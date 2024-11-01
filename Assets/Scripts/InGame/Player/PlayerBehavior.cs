@@ -24,6 +24,7 @@ public class PlayerBehavior : MonoBehaviour
 
     // ジャンプ時のイベント
     public event Action OnJumpCallback;
+    // 着地時のイベント
     public event Action OnLandCallback;
 
     private System.Threading.CancellationToken token;
