@@ -136,7 +136,7 @@ public class DSLInterpreter : MonoBehaviour
 
     public void ResetDictionary()
     {
-        inputField.text = "public class SwitchScreen : MonoBehaviour {\n\n}";
+        inputField.text = "public class PlayerController : MonoBehaviour {\n\n}";
         commandDic.Clear();
     }
 

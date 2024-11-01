@@ -16,6 +16,8 @@ public class SwitchScreen : MonoBehaviour
 
     [SerializeField] private GameObject screen;
 
+    [SerializeField] private GameObject button;
+
     // 二次元配列でスクリーンの座標を管理
     private Vector3[,] screenPos = new Vector3[2, 2]
     {
@@ -31,6 +33,7 @@ public class SwitchScreen : MonoBehaviour
 
     private int[] fontSize = { 16, 5 };
     private int[] commandPanelTop = { 35, 15 };
+    private int[] buttonPosY = { 0, -160 };
 
     // Start is called before the first frame update
     void Start()
@@ -53,7 +56,7 @@ public class SwitchScreen : MonoBehaviour
         }
     }
 
-    void ExpandScreen(int mode)
+    public void ExpandScreen(int mode)
     {
         screen.transform.DOLocalMove(screenPos[mode, 0], transitionTime);
         screen.transform.DOScale(screenPos[mode, 1], transitionTime);
@@ -74,5 +77,8 @@ public class SwitchScreen : MonoBehaviour
 
         // Bottomを0に固定
         commandPanelRectTransform.offsetMin = new Vector2(commandPanelRectTransform.offsetMin.x, 0);
+
+        // ボタンの位置をアニメーション
+        button.transform.DOLocalMoveY(buttonPosY[mode], transitionTime);
     }
 }
