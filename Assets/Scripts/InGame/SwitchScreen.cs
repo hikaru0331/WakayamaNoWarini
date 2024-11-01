@@ -46,11 +46,11 @@ public class SwitchScreen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftAlt))
         {
             ExpandScreen(1);
         }
-        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        else if (Input.GetKeyUp(KeyCode.LeftAlt))
         {
             ExpandScreen(0);
         }
