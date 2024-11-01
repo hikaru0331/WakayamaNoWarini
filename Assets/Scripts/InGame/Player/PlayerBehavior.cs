@@ -109,6 +109,10 @@ public class PlayerBehavior : MonoBehaviour
 
             // ジャンプ中は地面から離れる
             isGrounded = false;
+
+            // スタックしてジャンプできなくなるバグへの応急処置
+            await UniTask.WaitForSeconds(3.0f, cancellationToken: token);
+            isGrounded = true;
         }        
     }
 
