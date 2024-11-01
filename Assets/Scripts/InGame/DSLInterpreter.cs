@@ -134,9 +134,9 @@ public class DSLInterpreter : MonoBehaviour
         return commandDic;
     }
 
-    public void ResetDic()
+    public void ResetDictionary()
     {
-        inputField.text = "";
+        inputField.text = "public class PlayerController : MonoBehaviour\n{\n\n}";
         commandDic.Clear();
     }
 

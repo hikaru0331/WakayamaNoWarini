@@ -37,6 +37,7 @@ public class PlayerOperator : MonoBehaviour
             ReadDictionary();
 
             // ここで辞書の中身をリセットするメソッドを読んでください
+            dSLInterpreter.ResetDictionary();
         }
     }
 
