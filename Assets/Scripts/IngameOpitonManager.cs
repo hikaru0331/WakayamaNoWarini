@@ -19,14 +19,17 @@ public class IngameOpitonManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // コントロールキーを押すと、チートシートを表示する。もう一度押すと非表示にする。
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        // コントロールキーとオルトキーを押すと、チートシートを表示する。もう一度押すと非表示にする。
+        if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.LeftAlt))
         {
-            cheatsheetPanel.SetActive(true);
-        }
-        if (Input.GetKeyUp(KeyCode.LeftControl))
-        {
-            cheatsheetPanel.SetActive(false);
+            if (cheatsheetPanel.activeSelf)
+            {
+                cheatsheetPanel.SetActive(false);
+            }
+            else
+            {
+                cheatsheetPanel.SetActive(true);
+            }
         }
     }
 

@@ -1951,7 +1951,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &556492576
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3013,7 +3013,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "// Press Alt key\n   to Expand mode\n\n// Press Ctrl key\n   to Open Cheatsheet"
+  m_text: '// Press Alt key
+
+    to Expand mode
+
+
+    // Press Ctrl + Alt
+
+    key
+    to Open Cheatsheet'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ebe6849d2bf066d439d66940108692a4, type: 2}
   m_sharedMaterial: {fileID: -8371371781771975959, guid: ebe6849d2bf066d439d66940108692a4, type: 2}

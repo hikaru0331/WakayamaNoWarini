@@ -30,7 +30,7 @@ public class PlayerOperator : MonoBehaviour
 
     private void Update() 
     {
-        if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Return))
         {
             commandDic = dSLInterpreter.ReturnDictionary();
 
