@@ -44,41 +44,41 @@ public class PlayerBehavior : MonoBehaviour
         OverwritePhysicsMaterial(50.0f, 0.3f);
     }
 
-    /// <summary>
-    /// ジャンプや向きの変更を処理します。最終的にはコメントアウト
-    /// </summary>
-    void Update()
-    {
-        // 矢印キーでプレイヤーの向きを変更
-        HandleDirectionChange();
+    // /// <summary>
+    // /// ジャンプや向きの変更を処理します。最終的にはコメントアウト
+    // /// </summary>
+    // void Update()
+    // {
+    //     // 矢印キーでプレイヤーの向きを変更
+    //     HandleDirectionChange();
 
-        // Spaceキーが押され、プレイヤーが地面にいるときにジャンプ
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-        {
-            Jump(maxJumpForce, jumpAngle);
-        }
-    }
+    //     // Spaceキーが押され、プレイヤーが地面にいるときにジャンプ
+    //     if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+    //     {
+    //         Jump(maxJumpForce, jumpAngle);
+    //     }
+    // }
 
-    /// <summary>
-    /// 矢印キーの入力によってプレイヤーの向きを変更します。最終的にはコメントアウト
-    /// </summary>
-    public void HandleDirectionChange()
-    {
-        float horizontalInput = Input.GetAxis("Horizontal");
+    // /// <summary>
+    // /// 矢印キーの入力によってプレイヤーの向きを変更します。最終的にはコメントアウト
+    // /// </summary>
+    // public void HandleDirectionChange()
+    // {
+    //     float horizontalInput = Input.GetAxis("Horizontal");
 
-        // 右向きに移動する場合
-        if (horizontalInput > 0 && !facingRight)
-        {
-            Flip(); // プレイヤーの向きを右に変更
-            Debug.Log("右向き");
-        }
-        // 左向きに移動する場合
-        else if (horizontalInput < 0 && facingRight)
-        {
-            Flip(); // プレイヤーの向きを左に変更
-            Debug.Log("左向き");
-        }
-    }
+    //     // 右向きに移動する場合
+    //     if (horizontalInput > 0 && !facingRight)
+    //     {
+    //         Flip(); // プレイヤーの向きを右に変更
+    //         Debug.Log("右向き");
+    //     }
+    //     // 左向きに移動する場合
+    //     else if (horizontalInput < 0 && facingRight)
+    //     {
+    //         Flip(); // プレイヤーの向きを左に変更
+    //         Debug.Log("左向き");
+    //     }
+    // }
 
     /// <summary>
     /// プレイヤーを現在の向きに応じて放物線状にジャンプさせます。
