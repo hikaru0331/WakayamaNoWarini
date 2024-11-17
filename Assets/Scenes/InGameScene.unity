@@ -3023,8 +3023,8 @@ MonoBehaviour:
     key
     to Open Cheatsheet'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ebe6849d2bf066d439d66940108692a4, type: 2}
-  m_sharedMaterial: {fileID: -8371371781771975959, guid: ebe6849d2bf066d439d66940108692a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 50f6f1b2b946949679460b8ccdf4222b, type: 2}
+  m_sharedMaterial: {fileID: -8371371781771975959, guid: 50f6f1b2b946949679460b8ccdf4222b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6045,8 +6045,8 @@ MonoBehaviour:
   m_text: "public class PlayerController : MonoBehaviour\n{\n    // press Shift +
     Enter\n}\u200B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ebe6849d2bf066d439d66940108692a4, type: 2}
-  m_sharedMaterial: {fileID: -8371371781771975959, guid: ebe6849d2bf066d439d66940108692a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 50f6f1b2b946949679460b8ccdf4222b, type: 2}
+  m_sharedMaterial: {fileID: -8371371781771975959, guid: 50f6f1b2b946949679460b8ccdf4222b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6416,8 +6416,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Enter text...
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ebe6849d2bf066d439d66940108692a4, type: 2}
-  m_sharedMaterial: {fileID: -8371371781771975959, guid: ebe6849d2bf066d439d66940108692a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 50f6f1b2b946949679460b8ccdf4222b, type: 2}
+  m_sharedMaterial: {fileID: -8371371781771975959, guid: 50f6f1b2b946949679460b8ccdf4222b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
